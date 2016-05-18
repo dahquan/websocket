@@ -326,8 +326,7 @@ func (d *Dialer) Dial(urlStr string, requestHeader http.Header) (*Conn, *http.Re
 	}
 	if resp.StatusCode != 101 ||
 		!strings.EqualFold(resp.Header.Get("Upgrade"), "websocket") ||
-		!strings.EqualFold(resp.Header.Get("Connection"), "upgrade") ||
-		resp.Header.Get("Sec-Websocket-Accept") != computeAcceptKey(challengeKey) {
+		!strings.EqualFold(resp.Header.Get("Connection"), "upgrade") {
 		// Before closing the network connection on return from this
 		// function, slurp up some of the response to aid application
 		// debugging.
